@@ -4,7 +4,6 @@ const AppError = require('../utils/appError');
 
 exports.createService = async (place_name, place_description) => {
     const session = await mongoose.startSession();
-  
     try {
       session.startTransaction();
       const newTour = new tourModel({ place_name, place_description });

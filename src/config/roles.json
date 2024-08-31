@@ -1,0 +1,16 @@
+{
+  "roles": [
+    {
+      "name": "admin",
+      "permissions": ["read_user", "update_user"]
+    },
+    {
+      "name": "manager",
+      "permissions": []
+    },
+    {
+      "name": "employee",
+      "permissions": ["read_user"]
+    }
+  ]
+}

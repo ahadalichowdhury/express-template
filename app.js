@@ -12,6 +12,8 @@ const globalErrorHanlder = require("./src/controllers/errorController");
 
 //route import
 const tourRoute = require("./src/routes/tourRoute")
+const userRoute = require("./src/routes/userRoute")
+
 const app = express();
 
 // GLOBAL MIDDLEWARES
@@ -61,6 +63,8 @@ app.use(compression()); // this is going to compress all the text that is sent t
 
 // app.use("/", viewRouter);
 app.use("/api/v1/tours", tourRoute);
+app.use("/api/v1/users", userRoute);
+
 // app.use("/api/v1/users", userRouter);
 // app.use("/api/v1/reviews", reviewRouter);
 // app.use("/api/v1/bookings", bookingRouter);

@@ -18,8 +18,7 @@ const userSchema = new Schema({
   },
   role: {
     type: String,
-    enum: ['admin', 'manager', 'employee'], // Match these with your roles in roles.json
-    default: 'employee',
+    enum: ['admin', 'manager'], // Match these with your roles in roles.json
     required: true,
   },
   // Other user-specific fields

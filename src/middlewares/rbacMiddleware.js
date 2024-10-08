@@ -1,22 +1,18 @@
-const { getPermissionsByRoleName } = require('../utils/permissionUtils');
-const AppError = require("../utils/appError");
+// Permission Middleware
+const roles = require('../config/roles');
 
-
-const checkPermission = (permission) => {
+const checkPermission = (action) => {
   return (req, res, next) => {
-    const userRole = req.user ? req.user.role : 'anonymous';
-    // console.log(req.user)
-    const userPermissions = getPermissionsByRoleName(userRole);
-
-    if (userPermissions.includes(permission)) {
-      return next();
-    } else {
-      // return res.status(403).json({ error: 'Access denied' });
-      throw new AppError('access denied', 400);
+    const userRole = req.user.role; // Assuming `req.user` is populated by `authMiddleware`
+    const permissions = roles[userRole];
+    
+    if (!permissions || !permissions.includes(action)) {
+      return res.status(403).json({ message: 'Access denied' });
     }
+
+    // Proceed to the next middleware or route
+    next();
   };
 };
 
-module.exports = {
-  checkPermission,
-};
+module.exports = { checkPermission };
